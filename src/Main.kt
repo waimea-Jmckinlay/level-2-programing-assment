@@ -16,6 +16,15 @@
 
 
 fun main() {
-    println("Hello World!")
+
+    println("welcome to the old gold game")
+    println("in this 2 player game your goal is")
+    println("to be the one to remove the gold coin from the board")
+    println("you can move one coin as far right as you want as long as")
+    println("there are no coins in the way. you can only remove coins if ")
+    println ("they are on the end space players take turns moving or removing coins ")
+    println ("the player that remove the gold coin from the board wins")
+    println("---------------------------------------------------------------------")
+
 }
 
