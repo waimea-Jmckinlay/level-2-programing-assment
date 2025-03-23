@@ -31,14 +31,24 @@ fun main() {
     println("---------------------------------------------------------------------")
 //getting player names they can have numbers it they want or only be numbers
     val player1 = getString ("Enter your name player1")
-    println("nice to meet you $player1")
+
+
 
     val player2 = getString ("Enter your name player2")
-    println("nice to meet you $player2")
 
-   val gamebord = GameGraph()
+    println("good luck $player1 and $player2 may the best player win")
+
+   val gameBord = GameGraph()
     //change when game is working
-    println(gamebord)
+    println(gameBord)
+
+    println("adding coins")
+
+    placeCoinInGame(gameBord, 1, "2")
+    placeCoinInGame(gameBord, 8, "1")
+    placeCoinInGame(gameBord, 5, "2")
+    placeCoinInGame(gameBord, 3, "2")
+    placeCoinInGame(gameBord, 7, "2")
 
 
 }
@@ -48,16 +58,22 @@ fun getString(prompt: String): String {
     var userinput: String
 
     while (true) {
-        print(prompt)
+        println(prompt)
         userinput = readln()
         if (userinput.isNotBlank()) break
     }
     return userinput
 }
-//printing the gamebord blank/without coins in it
+//printing the gameBord blank/without coins in it
 fun GameGraph(): MutableList<String> {
     val graph = mutableListOf<String>()
     for (i in 1..NUMgraph) graph.add(EMPTY)
 
     return graph
 }
+//adding coins into some of the gameBord slots
+fun placeCoinInGame(gameBordSetUp: MutableList<String>, bordNum: Int, coin: String) {
+    gameBordSetUp.add(coin)
+ println( gameBordSetUp)
+}
+

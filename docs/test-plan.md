@@ -10,9 +10,9 @@ Terminology:
 
 ---
 
-## Example Test Name
+## Names
 
-Example test description. Example test description. Example test description. Example test description. Example test description. Example test description.
+seeing if player Names are working
 
 ### Test Data To Use
 
@@ -20,13 +20,19 @@ Details of test data and reasons for selection. Details of test data and reasons
 
 ### Expected Test Result
 
-Statement detailing what should happen. Statement detailing what should happen. Statement detailing what should happen. Statement detailing what should happen. 
+what should happen is the players should be
+able to input their names weather or not it has 
+numbers in it or just numbers or letters 
 
----
+![img.png](img.png)
+ It does what I want it to do right now 
 
-## Example Test Name
 
-Example test description. Example test description. Example test description. Example test description. Example test description. Example test description.
+## The game
+
+Im testing to see if the game bord has been printed 
+with numbers in most slots representing a different coin 
+1= gold 2= sliver
 
 ### Test Data To Use
 
