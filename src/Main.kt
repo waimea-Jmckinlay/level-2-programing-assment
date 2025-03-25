@@ -12,13 +12,13 @@
  *
  * =====================================================================
  */
-
-val goldCoin=1
-val slivercoin=2
+val GAMEBORD = GameGraph()
+const val GOLD ="G"
+const val SILVER="S"
 val win = "W"
 val lose="L"
-const val EMPTY = "[-]"
-const val NUMgraph = 9
+const val EMPTY = " "
+const val GAME_SIZE = 9
 fun main() {
 
     println("welcome to the old gold game")
@@ -44,13 +44,14 @@ fun main() {
 
     println("adding coins")
 
-    placeCoinInGame(gameBord, 1, "2")
-    placeCoinInGame(gameBord, 8, "1")
-    placeCoinInGame(gameBord, 5, "2")
-    placeCoinInGame(gameBord, 3, "2")
-    placeCoinInGame(gameBord, 7, "2")
-
-
+    var = mutableListOf(" "," "," ")
+//    placeCoinInGame(gameBord, GAME_SIZE-1, GOLD)
+ //   placeCoinInGame(gameBord, GAME_SIZE - (1+4 (SILVER))
+//  placeCoinInGame(gameBord, randomSlot(), SILVER)
+//  placeCoinInGame(gameBord, randomSlot(), SILVER)
+//  placeCoinInGame(gameBord, randomSlot(), SILVER)
+   GameGraph()
+    println (gameBord)
 }
 
 //getting players names
@@ -67,13 +68,28 @@ fun getString(prompt: String): String {
 //printing the gameBord blank/without coins in it
 fun GameGraph(): MutableList<String> {
     val graph = mutableListOf<String>()
-    for (i in 1..NUMgraph) graph.add(EMPTY)
+    for (i in 1..GAME_SIZE) graph.add(EMPTY)
 
     return graph
 }
 //adding coins into some of the gameBord slots
-fun placeCoinInGame(gameBordSetUp: MutableList<String>, bordNum: Int, coin: String) {
-    gameBordSetUp.add(coin)
- println( gameBordSetUp)
+fun placeCoinInGame(board: MutableList<String>, bordNum: Int, coin: String) {
+    board[bordNum] = coin
 }
+// randoming what slots the coins go in
+fun randomSlot(): Int {
+        for (num in 1 .. 4){
+            GAMEBORD.add(SILVER)
 
+        GAMEBORD.shuffle()
+
+        }
+    GAMEBORD.add(8 ,GOLD)
+    return TODO("Provide the return value")
+}
+//list of gamesize-(1+number of silver coins)
+ //       repeat (silvercoins){
+ //           list.add(S)
+  //      }
+  //list.shuffle
+  //      list.add(G)
