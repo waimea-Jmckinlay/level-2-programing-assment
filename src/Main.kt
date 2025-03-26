@@ -36,22 +36,25 @@ fun main() {
 
     val player2 = getString ("Enter your name player2")
 
+    println(GAMEBORD)
+
+    println("adding coins...")
+
+    println (RandomSlot())
+
     println("good luck $player1 and $player2 may the best player win")
 
-   val gameBord = GameGraph()
-    //change when game is working
-    println(gameBord)
+    println("$player1 Your turn to start.")
+    println("what would you like to do")
+    println("move a coin,or, remove a coin (answer as shown)")
 
-    println("adding coins")
 
-    var = mutableListOf(" "," "," ")
-//    placeCoinInGame(gameBord, GAME_SIZE-1, GOLD)
- //   placeCoinInGame(gameBord, GAME_SIZE - (1+4 (SILVER))
-//  placeCoinInGame(gameBord, randomSlot(), SILVER)
-//  placeCoinInGame(gameBord, randomSlot(), SILVER)
-//  placeCoinInGame(gameBord, randomSlot(), SILVER)
-   GameGraph()
-    println (gameBord)
+    var PlayerInput = readLine()!!
+    
+
+
+
+
 }
 
 //getting players names
@@ -72,24 +75,16 @@ fun GameGraph(): MutableList<String> {
 
     return graph
 }
-//adding coins into some of the gameBord slots
-fun placeCoinInGame(board: MutableList<String>, bordNum: Int, coin: String) {
-    board[bordNum] = coin
-}
-// randoming what slots the coins go in
-fun randomSlot(): Int {
-        for (num in 1 .. 4){
-            GAMEBORD.add(SILVER)
 
+// randoming what slots the coins go in
+fun RandomSlot(): MutableList<String> {
+        repeat(4){
+            GAMEBORD.remove(" ")  //removing empty space,so we don't remove any silver coins
+            GAMEBORD.add(SILVER)
         GAMEBORD.shuffle()
 
         }
-    GAMEBORD.add(8 ,GOLD)
-    return TODO("Provide the return value")
+    GAMEBORD.remove(" ")
+    GAMEBORD.addLast(GOLD)
+    return GAMEBORD
 }
-//list of gamesize-(1+number of silver coins)
- //       repeat (silvercoins){
- //           list.add(S)
-  //      }
-  //list.shuffle
-  //      list.add(G)
