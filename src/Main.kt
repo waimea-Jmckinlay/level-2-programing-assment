@@ -12,7 +12,7 @@
  *
  * =====================================================================
  */
-val GAMEBORD = GameGraph()
+val GAMEBORD = gameGraph()
 const val GOLD ="G"
 const val SILVER="S"
 val win = "W"
@@ -40,17 +40,19 @@ fun main() {
 
     println("adding coins...")
 
-    println (RandomSlot())
+    println (randomSlot())
 
     println("good luck $player1 and $player2 may the best player win")
 
+
+
     println("$player1 Your turn to start.")
-    println("what would you like to do")
-    println("move a coin,or, remove a coin (answer as shown)")
+    val action = playerinput()
 
-
-    var PlayerInput = readLine()!!
-    
+    if {
+        action == 'm'
+        println(moveCoin)
+    }
 
 
 
@@ -69,7 +71,7 @@ fun getString(prompt: String): String {
     return userinput
 }
 //printing the gameBord blank/without coins in it
-fun GameGraph(): MutableList<String> {
+fun gameGraph(): MutableList<String> {
     val graph = mutableListOf<String>()
     for (i in 1..GAME_SIZE) graph.add(EMPTY)
 
@@ -77,7 +79,7 @@ fun GameGraph(): MutableList<String> {
 }
 
 // randoming what slots the coins go in
-fun RandomSlot(): MutableList<String> {
+fun randomSlot(): MutableList<String> {
         repeat(4){
             GAMEBORD.remove(" ")  //removing empty space,so we don't remove any silver coins
             GAMEBORD.add(SILVER)
@@ -87,4 +89,48 @@ fun RandomSlot(): MutableList<String> {
     GAMEBORD.remove(" ")
     GAMEBORD.addLast(GOLD)
     return GAMEBORD
+}
+fun playerinput():Char{
+    println("[m]ove a coin"  )
+    println("[r]emove a coin")
+
+
+    val validChoices = "mr"
+
+    while (true) {
+        val input = readLine()!!
+        //typed nothing try again
+        if (input.isBlank()) continue
+
+        val choice = input.lowercase().first()
+        //check if it is a valid option
+        if (validChoices.contains(choice))
+            return choice
+    }
+
+}
+fun getInt(): Int {
+    var playerInput: Int
+    var secondPlayerInput: Int
+    while (true) {
+
+
+        playerInput = readln()
+        if (playerInput.isNotBlank()) break
+
+        secondPlayerInput = readln()
+        if (secondPlayerInput.isNotBlank()) break
+
+    }
+    return playerInput
+    return secondPlayerInput
+}
+
+fun moveCoin() {
+    println("what place is the coin in you want to move")
+    var playerInput = getInt()
+    println("and which slot do you want to move it into ")
+    var secondPlayerInput = getInt()
+    GAMEBORD.replaceAll(playerInput + 1 to secondPlayerInput + 1)
+
 }

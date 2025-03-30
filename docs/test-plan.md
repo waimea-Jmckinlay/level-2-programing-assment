@@ -51,4 +51,10 @@ and then added the gold coin on the end.
 
 
 ## Name 
-getting 2 player to work/taking turns 
+getting 2 player to work/taking turns
+
+## test data 
+im working on getting the inputs which is allright right but im having
+problems making those inputs in action 
+![img_5.png](img_5.png)
+![img_6.png](img_6.png)
