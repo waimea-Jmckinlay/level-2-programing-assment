@@ -26,21 +26,20 @@ fun main() {
     println("to be the one to remove the number 1 coin from the board")
     println("you can move one coin as far right as you want as long as")
     println("there are no coins in the way. you can only remove coins if ")
-    println ("they are on the end space players take turns moving or removing coins ")
-    println ("the player that remove the coin 1 from the board wins")
+    println("they are on the end space players take turns moving or removing coins ")
+    println("the player that remove the coin 1 from the board wins")
     println("---------------------------------------------------------------------")
 //getting player names they can have numbers it they want or only be numbers
-    val player1 = getString ("Enter your name player1")
+    val player1 = getString("Enter your name player1")
 
 
-
-    val player2 = getString ("Enter your name player2")
+    val player2 = getString("Enter your name player2")
 
     println(GAMEBORD)
 
     println("adding coins...")
 
-    println (randomSlot())
+    println(randomSlot())
 
     println("good luck $player1 and $player2 may the best player win")
 
@@ -49,15 +48,26 @@ fun main() {
     println("$player1 Your turn to start.")
     val action = playerinput()
 
-    if {
-        action == 'm'
-        println(moveCoin)
+      if (action == 'm') {
+          println(input())
+
+
+      }
+
+
+
+
+         println(GAMEBORD)
+
+
+    if (action == 'r') {
+        GAMEBORD.removeFirst()
+        GAMEBORD.addFirst(EMPTY)
+        println(GAMEBORD)
     }
 
+    }
 
-
-
-}
 
 //getting players names
 fun getString(prompt: String): String {
@@ -66,7 +76,9 @@ fun getString(prompt: String): String {
     while (true) {
         println(prompt)
         userinput = readln()
-        if (userinput.isNotBlank()) break
+        if (userinput.isNotBlank())
+            return userinput
+        break
     }
     return userinput
 }
@@ -90,7 +102,8 @@ fun randomSlot(): MutableList<String> {
     GAMEBORD.addLast(GOLD)
     return GAMEBORD
 }
-fun playerinput():Char{
+//getting the player input
+fun playerinput(): Any {
     println("[m]ove a coin"  )
     println("[r]emove a coin")
 
@@ -98,39 +111,39 @@ fun playerinput():Char{
     val validChoices = "mr"
 
     while (true) {
-        val input = readLine()!!
+        var input = readLine()!!
         //typed nothing try again
-        if (input.isBlank()) continue
+        if (input.isBlank())
+            println( "m or r")
 
-        val choice = input.lowercase().first()
+
+
+
         //check if it is a valid option
-        if (validChoices.contains(choice))
-            return choice
+        if (validChoices == "mr")
+            break
+
+
+
+            return validChoices
     }
 
+    return playerinput()
 }
-fun getInt(): Int {
-    var playerInput: Int
-    var secondPlayerInput: Int
+//making sure the player only inputs a number from 1-9
+fun input(): Any {
+   var PlayerInput = readLine()!!
     while (true) {
 
+            println("what place is the coin in you want to move")
+        println("1-9")
+        var PlayerInput = readln()
+        if (PlayerInput.contains("[1-9]".toRegex())) break
+        else println("A number from 1-9 pls")
 
-        playerInput = readln()
-        if (playerInput.isNotBlank()) break
 
-        secondPlayerInput = readln()
-        if (secondPlayerInput.isNotBlank()) break
-
-    }
-    return playerInput
-    return secondPlayerInput
+        return playerinput()
 }
 
-fun moveCoin() {
-    println("what place is the coin in you want to move")
-    var playerInput = getInt()
-    println("and which slot do you want to move it into ")
-    var secondPlayerInput = getInt()
-    GAMEBORD.replaceAll(playerInput + 1 to secondPlayerInput + 1)
-
+    return input()
 }

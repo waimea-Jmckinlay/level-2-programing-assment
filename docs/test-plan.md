@@ -31,14 +31,10 @@ numbers in it or just numbers or letters
 ## The game
 
 Im testing to see if the game bord has been printed 
-with numbers in most slots representing a different coin 
-G= gold S= sliver and the sliver randomly ladout and gold is in the 8 place
+with the coins in 5 slots, gold is put in the 9/last place
 
 ### Test Data To Use
-It is printing a second board but it doesn't have any coins in it  
-![img_1.png](img_1.png)
-Now it's worked but it added 4 new slots to the game
-![img_2.png](img_2.png)
+i will run the progarm to see if it works
 
 ### Expected Test Result
 
@@ -46,7 +42,7 @@ what should happen is the Game should randomes the sliver slots add a gold coin 
 add any more slots
 ### Fixed resalt
 I have fixed it I did change it so it would delated a space that wasn't a coin once one was added
-and then added the gold coin on the end.
+and then added the gold coin on the end after delating that space/slot.
 ![img_4.png](img_4.png)
 
 
@@ -54,7 +50,16 @@ and then added the gold coin on the end.
 getting 2 player to work/taking turns
 
 ## test data 
-im working on getting the inputs which is allright right but im having
-problems making those inputs in action 
-![img_5.png](img_5.png)
-![img_6.png](img_6.png)
+I will run the progarm and enter an input as a player and see what happens
+
+
+## what happened
+the code didn't take the input but somereson it also added 
+anough slot t othe game board
+![img_7.png](img_7.png)
+
+I got it to do one of the inputs right (r)
+but still working on moving coins 
+![img_8.png](img_8.png)
+
+###
