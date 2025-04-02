@@ -15,8 +15,6 @@
 val GAMEBORD = gameGraph()
 const val GOLD ="G"
 const val SILVER="S"
-val win = "W"
-val lose="L"
 const val EMPTY = " "
 const val GAME_SIZE = 9
 fun main() {
@@ -47,26 +45,14 @@ fun main() {
 
     println("$player1 Your turn to start.")
     val action = playerinput()
-
-      if (action == 'm') {
-          println(input())
-
-
-      }
-
-
-
-
-         println(GAMEBORD)
-
-
-    if (action == 'r') {
-        GAMEBORD.removeFirst()
-        GAMEBORD.addFirst(EMPTY)
-        println(GAMEBORD)
+    var coin = getCoinPosition()
+    if (action == 'm'){
+        println(coin)
     }
 
     }
+
+
 
 
 //getting players names
@@ -93,7 +79,7 @@ fun gameGraph(): MutableList<String> {
 // randoming what slots the coins go in
 fun randomSlot(): MutableList<String> {
         repeat(4){
-            GAMEBORD.remove(" ")  //removing empty space,so we don't remove any silver coins
+            GAMEBORD.remove(" ")  //removing empty space,so we don't remove any silver coins that where added
             GAMEBORD.add(SILVER)
         GAMEBORD.shuffle()
 
@@ -110,40 +96,38 @@ fun playerinput(): Any {
 
     val validChoices = "mr"
 
-    while (true) {
+
         var input = readLine()!!
         //typed nothing try again
         if (input.isBlank())
             println( "m or r")
 
-
-
-
         //check if it is a valid option
         if (validChoices == "mr")
-            break
 
+        if (input == "r") {
+            GAMEBORD.removeFirst()
+            GAMEBORD.addFirst(EMPTY)
+            println(GAMEBORD)
+            return input
 
+        }
 
             return validChoices
-    }
 
-    return playerinput()
 }
+
+
 //making sure the player only inputs a number from 1-9
-fun input(): Any {
-   var PlayerInput = readLine()!!
+fun getCoinPosition(): Int {
     while (true) {
-
-            println("what place is the coin in you want to move")
+        println("what place is the coin in you want to move")
         println("1-9")
-        var PlayerInput = readln()
-        if (PlayerInput.contains("[1-9]".toRegex())) break
-        else println("A number from 1-9 pls")
+        val input = readln()
 
-
-        return playerinput()
-}
-
-    return input()
+        if (input.matches("[1-9]".toRegex())) {
+            return input.toInt()
+        }
+        println("A number from 1-9 pls")
+    }
 }
