@@ -49,7 +49,15 @@ fun main() {
     if (action == 'm'){
         println(coin)
     }
+    else if (action == 'r'){
+            GAMEBORD.removeFirst()
+            GAMEBORD.addFirst(EMPTY)
+            println(GAMEBORD)
 
+            if (GOLD  !in GAMEBORD) {
+                println("you win")
+            }
+    }
     }
 
 
@@ -87,6 +95,8 @@ fun randomSlot(): MutableList<String> {
     GAMEBORD.remove(" ")
     GAMEBORD.addLast(GOLD)
     return GAMEBORD
+
+
 }
 //getting the player input
 fun playerinput(): Any {
@@ -103,19 +113,14 @@ fun playerinput(): Any {
             println( "m or r")
 
         //check if it is a valid option
-        if (validChoices == "mr")
+    return  (validChoices )
 
-        if (input == "r") {
-            GAMEBORD.removeFirst()
-            GAMEBORD.addFirst(EMPTY)
-            println(GAMEBORD)
-            return input
 
         }
 
-            return validChoices
 
-}
+
+
 
 
 //making sure the player only inputs a number from 1-9
@@ -130,4 +135,5 @@ fun getCoinPosition(): Int {
         }
         println("A number from 1-9 pls")
     }
+
 }
