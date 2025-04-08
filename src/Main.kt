@@ -12,63 +12,92 @@
  *
  * =====================================================================
  */
-val GAMEBORD = gameGraph()
+
 const val GOLD ="G"
 const val SILVER="S"
 const val EMPTY = " "
 const val GAME_SIZE = 9
-fun main() {
 
+
+fun main() {
+    println("----------------------------------------------------------------------")
     println("welcome to the old gold game")
     println("in this 2 player game your goal is")
-    println("to be the one to remove the number 1 coin from the board")
+    println("to be the one to remove the G coin from the board")
     println("you can move one coin as far right as you want as long as")
     println("there are no coins in the way. you can only remove coins if ")
     println("they are on the end space players take turns moving or removing coins ")
     println("the player that remove the coin 1 from the board wins")
     println("---------------------------------------------------------------------")
-//getting player names they can have numbers it they want or only be numbers
-    val player1 = getString("Enter your name player1")
+
+    //getting player names they can have numbers it they want or only be numbers
+    val player1 = getString("Enter your name player1: ")
 
 
-    val player2 = getString("Enter your name player2")
+    val player2 = getString("Enter your name player2: ")
 
-    println(GAMEBORD)
+    println("creating board...")
+    val gameBoard = createBoard()
+    displayBoard(gameBoard)
 
     println("adding coins...")
-
-    println(randomSlot())
+    addCoins(gameBoard)
+    displayBoard(gameBoard)
 
     println("good luck $player1 and $player2 may the best player win")
 
 
+    while(true) {
 
-    println("$player1 Your turn to start.")
-    val action = playerinput()
-    var coin = getCoinPosition()
-    if (action == 'm'){
-        println(coin)
-    }
-    else if (action == 'r'){
-            GAMEBORD.removeFirst()
-            GAMEBORD.addFirst(EMPTY)
-            println(GAMEBORD)
+        println("$player1 Your turn")
+        val action = playerinput()
 
-            if (GOLD  !in GAMEBORD) {
+        if (action == 'm') {
+            moveCoin(gameBoard)
+            displayBoard(gameBoard)
+        }
+        if (action == 'r') {
+            gameBoard[0] = EMPTY
+            displayBoard(gameBoard)
+
+            if (GOLD !in gameBoard) {
                 println("you win")
+                break
             }
+        }
     }
+    while(true) {
+        println("$player2 Your turn")
+        val action = playerinput()
+
+        if (action == 'm') {
+            moveCoin(gameBoard)
+            displayBoard(gameBoard)
+        }
+        if (action == 'r') {
+            gameBoard[0] = EMPTY
+            displayBoard(gameBoard)
+
+            if (GOLD !in gameBoard) {
+                println("you win")
+                break
+
+            }
+        }
     }
+}
 
 
-
+fun displayBoard(board: MutableList<String>) {
+    println(board)
+}
 
 //getting players names
 fun getString(prompt: String): String {
     var userinput: String
 
     while (true) {
-        println(prompt)
+        print(prompt)
         userinput = readln()
         if (userinput.isNotBlank())
             return userinput
@@ -77,46 +106,38 @@ fun getString(prompt: String): String {
     return userinput
 }
 //printing the gameBord blank/without coins in it
-fun gameGraph(): MutableList<String> {
+fun createBoard(): MutableList<String> {
     val graph = mutableListOf<String>()
     for (i in 1..GAME_SIZE) graph.add(EMPTY)
 
     return graph
 }
 
-// randoming what slots the coins go in
-fun randomSlot(): MutableList<String> {
-        repeat(4){
-            GAMEBORD.remove(" ")  //removing empty space,so we don't remove any silver coins that where added
-            GAMEBORD.add(SILVER)
-        GAMEBORD.shuffle()
-
-        }
-    GAMEBORD.remove(" ")
-    GAMEBORD.addLast(GOLD)
-    return GAMEBORD
-
-
+// randoming what slots the coins go in and adding the gold coin last
+fun addCoins(board: MutableList<String>)  {
+    repeat(4){
+        board.remove(" ")  //removing empty space,so we don't remove any silver coins that where added
+        board.add(SILVER)
+        board.shuffle()
+    }
+    board.remove(" ")
+    board.addLast(GOLD)
 }
-//getting the player input
-fun playerinput(): Any {
-    println("[m]ove a coin"  )
-    println("[r]emove a coin")
 
 
+//getting the player input and filtering out bad inputs
+fun playerinput(): Char {
     val validChoices = "mr"
+    while (true) {
+        println("[m]ove a coin")
+        println("[r]emove a coin")
 
+        val input = readln().lowercase().first()
 
-        var input = readLine()!!
-        //typed nothing try again
-        if (input.isBlank())
-            println( "m or r")
-
-        //check if it is a valid option
-    return  (validChoices )
-
-
-        }
+        val validChoices = "mr"
+        if (validChoices.contains(input)) return input
+    }
+}
 
 
 
@@ -124,16 +145,43 @@ fun playerinput(): Any {
 
 
 //making sure the player only inputs a number from 1-9
-fun getCoinPosition(): Int {
+fun getCoinToMove(): Int {
     while (true) {
         println("what place is the coin in you want to move")
+        println("1-9")
+        val Input = readln()
+
+        if (Input.matches("[1-9]".toRegex())) {
+            return Input.toInt() - 1
+        }
+        if (Input.isBlank()) {
+            println("a number from 1 to 9")
+        }
+
+
+   }
+}
+//getting where the coin is going to move
+fun getPlaceToMoveCoinTo(): Int {
+    while (true) {
+        println("what place do you want to move the coin too")
         println("1-9")
         val input = readln()
 
         if (input.matches("[1-9]".toRegex())) {
-            return input.toInt()
+            return input.toInt() - 1
         }
-        println("A number from 1-9 pls")
+        if(input.toInt() == getCoinToMove()){
+            println("can't move a coin onto the same space")
+
+        }
     }
+}
+fun moveCoin(board: MutableList<String>) {
+    val coinToMove = getCoinToMove()
+    val squareToMoveTo = getPlaceToMoveCoinTo()
+
+    board[squareToMoveTo] = board[coinToMove]
+    board[coinToMove] = EMPTY
 
 }

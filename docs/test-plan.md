@@ -47,7 +47,7 @@ and then added the gold coin on the end after delating that space/slot.
 
 
 ## Name 
-getting 2 player to work/taking turns
+working on moveing and removeing a coin
 
 ## test data 
 I will run the progarm and enter an input as a player and see what happens
@@ -61,5 +61,9 @@ anough slot t othe game board
 I got it to do one of the inputs right (r)
 but still working on moving coins 
 ![img_8.png](img_8.png)
+
+it's moveing the coin but it printed a line that it shoudn't of
+and if i input r it now removers a coin but then tryes to move a coin
+![img_9.png](img_9.png)
 
 ###
