@@ -33,58 +33,23 @@ fun main() {
     //getting player names they can have numbers it they want or only be numbers
     val player1 = getString("Enter your name player1: ")
 
-
     val player2 = getString("Enter your name player2: ")
-
+    //prints the list
     println("creating board...")
     val gameBoard = createBoard()
     displayBoard(gameBoard)
-
+    // prints list with coins in it
     println("adding coins...")
     addCoins(gameBoard)
     displayBoard(gameBoard)
 
+
     println("good luck $player1 and $player2 may the best player win")
+    repeat(999) {
+    println(takingTurns("Your turn $player1"))
 
-
-    while(true) {
-
-        println("$player1 Your turn")
-        val action = playerinput()
-
-        if (action == 'm') {
-            moveCoin(gameBoard)
-            displayBoard(gameBoard)
-        }
-        if (action == 'r') {
-            gameBoard[0] = EMPTY
-            displayBoard(gameBoard)
-
-            if (GOLD !in gameBoard) {
-                println("you win")
-                break
-            }
-        }
-    }
-    while(true) {
-        println("$player2 Your turn")
-        val action = playerinput()
-
-        if (action == 'm') {
-            moveCoin(gameBoard)
-            displayBoard(gameBoard)
-        }
-        if (action == 'r') {
-            gameBoard[0] = EMPTY
-            displayBoard(gameBoard)
-
-            if (GOLD !in gameBoard) {
-                println("you win")
-                break
-
-            }
-        }
-    }
+    println(takingTurns("Your turn $player2"))
+}
 }
 
 
@@ -184,4 +149,30 @@ fun moveCoin(board: MutableList<String>) {
     board[squareToMoveTo] = board[coinToMove]
     board[coinToMove] = EMPTY
 
+}
+ //lets players take turns
+fun takingTurns(prompt : String)  {
+    val gameBoard ==
+    while(true) {
+
+        println(prompt)
+        val action = playerinput()
+
+        if (action == 'm') {
+            moveCoin(gameBoard)
+            displayBoard(gameBoard)
+            break
+        }
+        if (action == 'r') {
+            gameBoard[0] = EMPTY
+            displayBoard(gameBoard)
+            break
+        }
+
+            if (GOLD !in gameBoard) {
+                println("you win")
+                break
+            }
+
+    }
 }

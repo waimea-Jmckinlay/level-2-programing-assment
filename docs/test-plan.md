@@ -66,4 +66,5 @@ it's moveing the coin but it printed a line that it shoudn't of
 and if i input r it now removers a coin but then tryes to move a coin
 ![img_9.png](img_9.png)
 
-###
+### Fixed resalt 
+the game can now remave and move coins around with the player's input
