@@ -45,17 +45,28 @@ fun main() {
 
 
     println("good luck $player1 and $player2 may the best player win")
-    repeat(999) {
-    println(takingTurns("Your turn $player1"))
+    while (true) {
+        takeTurn("Your turn $player1", gameBoard)
+        if (GOLD !in gameBoard) {
+            println("You win!$player1")
+            break
+        }
 
-    println(takingTurns("Your turn $player2"))
+        takeTurn("Your turn $player2", gameBoard)
+
+        if (GOLD !in gameBoard) {
+            println("You win! $player2")
+            break
+        }
+    }
 }
-}
+
 
 
 fun displayBoard(board: MutableList<String>) {
     println(board)
 }
+
 
 //getting players names
 fun getString(prompt: String): String {
@@ -135,10 +146,14 @@ fun getPlaceToMoveCoinTo(): Int {
 
         if (input.matches("[1-9]".toRegex())) {
             return input.toInt() - 1
+            break
         }
         if(input.toInt() == getCoinToMove()){
             println("can't move a coin onto the same space")
 
+        if(input != EMPTY){
+            println("can't move coins onto coins")
+        }
         }
     }
 }
@@ -151,8 +166,7 @@ fun moveCoin(board: MutableList<String>) {
 
 }
  //lets players take turns
-fun takingTurns(prompt : String)  {
-    val gameBoard ==
+fun takeTurn(prompt : String, gameBoard : MutableList<String>)  {
     while(true) {
 
         println(prompt)
@@ -169,10 +183,8 @@ fun takingTurns(prompt : String)  {
             break
         }
 
-            if (GOLD !in gameBoard) {
-                println("you win")
-                break
-            }
 
     }
+
 }
+
