@@ -16,7 +16,7 @@ seeing if player Names are working
 
 ### Test Data To Use
 
-Details of test data and reasons for selection. Details of test data and reasons for selection. Details of test data and reasons for selection.
+running the program and putting in player names
 
 ### Expected Test Result
 
@@ -34,7 +34,7 @@ Im testing to see if the game bord has been printed
 with the coins in 5 slots, gold is put in the 9/last place
 
 ### Test Data To Use
-i will run the progarm to see if it works
+i will run the progarm to see if it does what i want it to do
 
 ### Expected Test Result
 
@@ -49,7 +49,7 @@ and then added the gold coin on the end after delating that space/slot.
 ## Name 
 working on moveing and removeing a coin
 
-## test data 
+## test data To Use
 I will run the progarm and enter an input as a player and see what happens
 
 
@@ -68,3 +68,34 @@ and if i input r it now removers a coin but then tryes to move a coin
 
 ### Fixed resalt 
 the game can now remave and move coins around with the player's input
+
+
+
+## player's taking turns
+ here I will be making sure players can take turns and win the game
+ 
+## test data To Use
+players can win and lose the game can be played 
+
+## what happend 
+it went as planed as the players can input moves to move coins and win
+as long as it's a vailed  input or as long as it's not left blank 
+![img_10.png](img_10.png)
+and once the game ends it prints you win (the Player name that won)
+![img_11.png](img_11.png)
+
+it breaks if you don't input anything and just hit enter
+![img_12.png](img_12.png)
+
+
+
+## Error checking
+testing all the in valided moves and fixing misstakes
+
+## tests data 
+
+## what happen
+I've ensured that coins can't be moved onto one another 
+![img_13.png](img_13.png)
+or you can't select a Empty space and must selet a coin
+![img_14.png](img_14.png)

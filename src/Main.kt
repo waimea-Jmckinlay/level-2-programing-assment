@@ -64,6 +64,7 @@ fun main() {
 
 
 fun displayBoard(board: MutableList<String>) {
+    println (mutableListOf(1,2,3,4,5,6,7,8,9))
     println(board)
 }
 
@@ -89,6 +90,9 @@ fun createBoard(): MutableList<String> {
     return graph
 }
 
+
+
+
 // randoming what slots the coins go in and adding the gold coin last
 fun addCoins(board: MutableList<String>)  {
     repeat(4){
@@ -110,8 +114,13 @@ fun playerinput(): Char {
 
         val input = readln().lowercase().first()
 
+
         val validChoices = "mr"
         if (validChoices.contains(input)) return input
+
+
+
+
     }
 }
 
@@ -121,50 +130,88 @@ fun playerinput(): Char {
 
 
 //making sure the player only inputs a number from 1-9
-fun getCoinToMove(): Int {
+fun getCoinToMove(board: MutableList<String>) :Int {
     while (true) {
         println("what place is the coin in you want to move")
         println("1-9")
         val Input = readln()
 
+
+        if (Input.isBlank()) {
+            println("a number from 1 to 9")
+            continue
+
+        }
+        val boardSquare = Input.toInt() - 1
+
+        if(board[boardSquare] == EMPTY) {
+            println("You have to pick a coin")
+            continue
+        }
+
+
+
         if (Input.matches("[1-9]".toRegex())) {
             return Input.toInt() - 1
         }
-        if (Input.isBlank()) {
-            println("a number from 1 to 9")
-        }
-
-
    }
 }
 //getting where the coin is going to move
-fun getPlaceToMoveCoinTo(): Int {
+fun getPlaceToMoveCoinTo(coinBeingMoved: Int, board: MutableList<String>): Int {
     while (true) {
         println("what place do you want to move the coin too")
         println("1-9")
         val input = readln()
 
-        if (input.matches("[1-9]".toRegex())) {
-            return input.toInt() - 1
-            break
-        }
-        if(input.toInt() == getCoinToMove()){
-            println("can't move a coin onto the same space")
+        val boardSquare = input.toInt() - 1
 
-        if(input != EMPTY){
-            println("can't move coins onto coins")
+        if(boardSquare == coinBeingMoved) {
+            println("can't move a coin onto the same space")
+            continue
         }
+
+        if(board[boardSquare] != EMPTY){
+            println("can't move coins onto coins")
+            continue
+        }
+        if(boardSquare >= coinBeingMoved){
+            println("can't move coins backwords")
+            continue
+        }
+
+
+        if (input.matches("[1-9]".toRegex())) {
+            return boardSquare
         }
     }
 }
 fun moveCoin(board: MutableList<String>) {
-    val coinToMove = getCoinToMove()
-    val squareToMoveTo = getPlaceToMoveCoinTo()
+    while (true) {
+        val coinToMove = getCoinToMove(board)
+        val squareToMoveTo = getPlaceToMoveCoinTo(coinToMove, board)
 
-    board[squareToMoveTo] = board[coinToMove]
-    board[coinToMove] = EMPTY
+        var coinsInWay = false
+        for (i in squareToMoveTo..<coinToMove) {
+            if (board[i] != EMPTY) {
+                coinsInWay = true
+                break
+            }
+        }
+
+        if (coinsInWay) {
+            println("Coin in way")
+            continue
+        }
+
+        // If we get here, must be a valid move
+        board[squareToMoveTo] = board[coinToMove]
+        board[coinToMove] = EMPTY
+        break
+    }
 
 }
+
+
  //lets players take turns
 fun takeTurn(prompt : String, gameBoard : MutableList<String>)  {
     while(true) {
@@ -182,6 +229,7 @@ fun takeTurn(prompt : String, gameBoard : MutableList<String>)  {
             displayBoard(gameBoard)
             break
         }
+
 
 
     }
